@@ -5,6 +5,7 @@ import pytest
 import re
 
 from test.model.WebsitePopularity import WebsitePopularity
+from test.utils.SoftAsssert import SoftAssert
 
 
 def get_wiki_table():
@@ -54,6 +55,8 @@ def get_website_popularity_info_list(table):
     return website_info_list
 
 
+soft_assert = SoftAssert()
+
 testdata = ['10^7', '1.5 * 10^7', '5 * 10^7', '10^8', '5 * 10^8', '10^9', '1.5 * 10^9']
 
 
@@ -63,6 +66,8 @@ def test_get_map_site_popularity(expected):
     expected_decimal_number = format_test_data(expected)
     websites = get_website_popularity_info_list(table)
     for website in websites:
-        assert website.popularity > expected_decimal_number, \
-            (f'{website.website_name} (Frontend:{website.frontend_language}|Backend:{website.backend_language}) '
-             f'has {website.popularity} unique visitors per month. (Expected more than {expected_decimal_number})')
+        soft_assert.assert_more(expected_decimal_number, website.popularity,
+                                (f'{website.website_name} (Frontend:{website.frontend_language}'
+                                 f'|Backend:{website.backend_language}) 'f'has {website.popularity} '
+                                 f'unique visitors per month. (Expected more than {expected_decimal_number})'))
+    soft_assert.assert_all()
