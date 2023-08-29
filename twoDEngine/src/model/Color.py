@@ -8,3 +8,7 @@ class Color:
         self.R = int(R)
         self.G = int(G)
         self.B = int(B)
+
+    def __eq__(self, other):
+        if isinstance(other, Color):
+            return self.R == other.R and self.G == other.G and self.B == other.B
