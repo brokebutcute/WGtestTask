@@ -47,8 +47,8 @@ def get_website_popularity_info_list(table):
         columns = row.find_all('td')
         website_name = (columns[0].text.strip().split('[')[0])
         popularity_column = columns[1].text.strip()
-        frontend_lang = columns[2].text.strip()
-        backend_lang = columns[3].text.strip()
+        frontend_lang = re.sub('\[.*]', '', columns[2].text.strip())
+        backend_lang = re.sub('\[.*]', '', columns[3].text.strip())
         cleaned_string = re.sub(r'\D', '', popularity_column)
         # Remove any trailing non-digit characters
         cleaned_string = re.match(r'\d+', cleaned_string).group()
