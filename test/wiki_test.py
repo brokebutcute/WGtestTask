@@ -7,6 +7,10 @@ import re
 from test.model.WebsitePopularity import WebsitePopularity
 from test.utils.SoftAsssert import SoftAssert
 
+soft_assert = SoftAssert()
+testdata = ['10^7', '1.5 * 10^7', '5 * 10^7', '10^8', '5 * 10^8', '10^9', '1.5 * 10^9']
+website_info_list = []
+
 
 def get_wiki_table():
     configs = Properties()
@@ -34,12 +38,11 @@ def format_test_data(scientific_notation):
     coefficient_value = float(coefficient)
     exponent_value = float(exponent.replace('10^', ''))
     decimal_value = coefficient_value * 10 ** exponent_value
-    return decimal_value
+    return int(decimal_value)
 
 
 def get_website_popularity_info_list(table):
     rows = table.find_all('tr')[1:]  # Skip the header row
-    website_info_list = []
     for row in rows:
         columns = row.find_all('td')
         website_name = (columns[0].text.strip().split('[')[0])
@@ -53,11 +56,6 @@ def get_website_popularity_info_list(table):
         website_info = WebsitePopularity(website_name, websites_count, frontend_lang, backend_lang)
         website_info_list.append(website_info)
     return website_info_list
-
-
-soft_assert = SoftAssert()
-
-testdata = ['10^7', '1.5 * 10^7', '5 * 10^7', '10^8', '5 * 10^8', '10^9', '1.5 * 10^9']
 
 
 @pytest.mark.parametrize('expected', testdata)
