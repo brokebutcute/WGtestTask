@@ -1,5 +1,3 @@
-import pytest
-
 from twoDEngine.src.model.Color import Color
 from twoDEngine.src.model.Canvas import Canvas
 
@@ -10,7 +8,6 @@ class Engine2D:
         self.current_color = Color(0, 0, 0) if color is None else color
         self.current_canvas = Canvas(100, 100) if canvas is None else canvas
         print('instance of 2d engine created')
-
 
     def draw(self, canvas):
         print('Starting draw all shapes')
