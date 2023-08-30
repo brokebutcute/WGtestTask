@@ -1,3 +1,6 @@
+Before all: run
+<code>pip install -r requirements.txt</code>
+
 <h1>1st task:</h1>
 How to run: 
 execute <code>pytest test/wiki_test.py</code> in terminal

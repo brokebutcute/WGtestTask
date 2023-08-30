@@ -79,9 +79,10 @@ def shortest_path(map_grid, start, end):
 # User input parameters
 M = int(input('Enter number of lines (M): '))
 N = int(input('Enter number of columns (N): '))
-land_percentage = float(input('Enter percent of land on your map: ')) / 100
-if land_percentage > 100 or land_percentage < 0:
-    print('The percent is too big or too small, please retry with correct value')
+# land_percentage = float(input('Enter percent of land on your map: ')) / 100
+# if land_percentage > 100 or land_percentage < 0:
+#     print('The percent is too big or too small, please retry with correct value')
+land_percentage = 0.3
 start_x = int(input('Enter X coordinate of the start point A(x): '))
 start_y = int(input('Enter Y coordinate of the start point A(y): '))
 end_x = int(input('Enter X coordinate of the end point B(x): '))

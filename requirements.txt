@@ -1,0 +1,5 @@
+pytest
+jproperties
+bs4
+requests
+pytest-mock
